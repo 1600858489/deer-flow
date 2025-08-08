@@ -48,8 +48,8 @@ logger = logging.getLogger(__name__)
 INTERNAL_SERVER_ERROR_DETAIL = "Internal Server Error"
 
 app = FastAPI(
-    title="DeerFlow API",
-    description="API for Deer",
+    title="课件智能体 API",
+    description="API for 课件智能体",
     version="0.1.0",
 )
 

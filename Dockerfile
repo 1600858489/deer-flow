@@ -5,14 +5,19 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
 WORKDIR /app
 
+ENV UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+ENV UV_HTTP_TIMEOUT=120
+
+
 # Pre-cache the application dependencies.
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --locked --no-install-project
+    uv sync  --no-install-project
 
 # Copy the application into the container.
 COPY . /app
+
 
 # Install the application dependencies.
 RUN --mount=type=cache,target=/root/.cache/uv \

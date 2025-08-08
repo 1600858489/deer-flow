@@ -218,7 +218,7 @@ def coordinator_node(
     logger.debug(f"Current state messages: {state['messages']}")
 
     goto = "__end__"
-    locale = state.get("locale", "en-US")  # Default locale if not specified
+    locale = state.get("locale", "zh-CN")  # Default locale if not specified
     research_topic = state.get("research_topic", "")
 
     if len(response.tool_calls) > 0:
@@ -268,7 +268,7 @@ def reporter_node(state: State, config: RunnableConfig):
                 f"# Research Requirements\n\n## Task\n\n{current_plan.title}\n\n## Description\n\n{current_plan.thought}"
             )
         ],
-        "locale": state.get("locale", "en-US"),
+        "locale": state.get("locale", "zh-CN"),
     }
     invoke_messages = apply_prompt_template("reporter", input_, configurable)
     observations = state.get("observations", [])
@@ -338,7 +338,7 @@ async def _execute_agent_step(
     agent_input = {
         "messages": [
             HumanMessage(
-                content=f"# Research Topic\n\n{plan_title}\n\n{completed_steps_info}# Current Step\n\n## Title\n\n{current_step.title}\n\n## Description\n\n{current_step.description}\n\n## Locale\n\n{state.get('locale', 'en-US')}"
+                content=f"# Research Topic\n\n{plan_title}\n\n{completed_steps_info}# Current Step\n\n## Title\n\n{current_step.title}\n\n## Description\n\n{current_step.description}\n\n## Locale\n\n{state.get('locale', 'zh-CN')}"
             )
         ]
     }

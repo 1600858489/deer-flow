@@ -22,8 +22,8 @@ type LanguageOption = {
 };
 
 const languages: Array<LanguageOption> = [
-  { code: "en", name: "English", flag: "🇺🇸" },
   { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "en", name: "English", flag: "🇺🇸" },
 ];
 
 export function LanguageSwitcher() {
