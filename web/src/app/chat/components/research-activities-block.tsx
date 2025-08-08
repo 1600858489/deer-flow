@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { LRUCache } from "lru-cache";
 import { BookOpenText, FileText, PencilRuler, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
 import { useMemo } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -345,7 +344,7 @@ function PythonToolCall({ toolCall }: { toolCall: ToolCallRuntime }) {
   const code = useMemo<string | undefined>(() => {
     return (toolCall.args as { code?: string }).code;
   }, [toolCall.args]);
-  const { resolvedTheme } = useTheme();
+  const resolvedTheme = "light" as const;
   return (
     <section className="mt-4 pl-4">
       <div className="flex items-center">
@@ -379,7 +378,7 @@ function PythonToolCall({ toolCall }: { toolCall: ToolCallRuntime }) {
 
 function PythonToolCallResult({ result }: { result: string }) {
   const t = useTranslations("chat.research");
-  const { resolvedTheme } = useTheme();
+  const resolvedTheme = "light" as const;
   const hasError = useMemo(
     () => result.includes("Error executing code:\n"),
     [result],
@@ -427,7 +426,7 @@ function PythonToolCallResult({ result }: { result: string }) {
 
 function MCPToolCall({ toolCall }: { toolCall: ToolCallRuntime }) {
   const tool = useMemo(() => findMCPTool(toolCall.name), [toolCall.name]);
-  const { resolvedTheme } = useTheme();
+  const resolvedTheme = "light" as const;
   return (
     <section className="mt-4 pl-4">
       <div className="w-fit overflow-y-auto rounded-md py-0">
